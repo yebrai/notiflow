@@ -1,0 +1,24 @@
+# Go build artifacts
+/bin/
+/obj/
+
+# IDEs
+/.idea/
+/*.iml
+
+# Archivos de log
+*.log
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos específicos de Go que no necesitas versionar
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Archivos de depuración
+/debug/
