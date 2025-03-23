@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"notification-service/internal/config"
 
+	"gorm.io/gorm"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,15 +15,17 @@ type Server struct {
 	router     *gin.Engine
 	config     config.ServerConfig
 	httpServer *http.Server
+	db         *gorm.DB
 }
 
-func NewServer(config config.ServerConfig) *Server {
+func NewServer(config config.ServerConfig, db *gorm.DB) *Server {
 	gin.SetMode(config.GinMode)
 	router := gin.Default()
 
 	return &Server{
 		router: router,
 		config: config,
+		db:     db,
 		httpServer: &http.Server{
 			Addr:         ":" + config.Port,
 			Handler:      router,

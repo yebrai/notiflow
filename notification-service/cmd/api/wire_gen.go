@@ -9,6 +9,7 @@ package main
 import (
 	"notification-service/internal/config"
 	"notification-service/internal/infrastructure/api"
+	"notification-service/internal/infrastructure/database"
 )
 
 // Injectors from wire.go:
@@ -16,6 +17,11 @@ import (
 // InitializeServer configura todas las dependencias y retorna una instancia de Server lista para usar
 func InitializeServer(cfg config.Config) (*api.Server, error) {
 	serverConfig := cfg.Server
-	server := api.NewServer(serverConfig)
+	databaseConfig := cfg.Database
+	db, err := database.NewGormDB(databaseConfig)
+	if err != nil {
+		return nil, err
+	}
+	server := api.NewServer(serverConfig, db)
 	return server, nil
 }

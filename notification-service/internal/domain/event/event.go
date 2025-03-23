@@ -1,8 +1,9 @@
-package domain
+package event
 
 import (
-	"github.com/google/uuid"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type EventType string
@@ -14,7 +15,7 @@ const (
 )
 
 type Event struct {
-	ID        string    `json:"id"`
+	ID        uuid.UUID `json:"id"`
 	Type      EventType `json:"type"`
 	Payload   []byte    `json:"payload"`
 	CreatedAt time.Time `json:"created_at"`
@@ -22,7 +23,7 @@ type Event struct {
 
 func NewEvent(eventType EventType, payload []byte) Event {
 	return Event{
-		ID:        uuid.New().String(),
+		ID:        uuid.New(),
 		Type:      eventType,
 		Payload:   payload,
 		CreatedAt: time.Now(),

@@ -22,6 +22,14 @@ docker-down:
 	@echo "Apagando contenedores Docker..."
 	docker-compose down
 
+docker-db:
+	@echo "Levantadando db..."
+	docker-compose -f docker-compose.dev.yaml up -d
+
+wire:
+	@echo "Generando Wire"
+	wire ./cmd/api
+
 # Migrations
 migrations:
 	@echo "Ejecutando migraciones de base de datos..."

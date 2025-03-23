@@ -1,7 +1,9 @@
-package domain
+package notification
 
 import (
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type NotificationStatus string
@@ -21,8 +23,8 @@ const (
 )
 
 type Notification struct {
-	ID        string             `json:"id"`
-	EventID   string             `json:"event_id"`
+	ID        uuid.UUID          `json:"id"`
+	EventID   uuid.UUID          `json:"event_id"`
 	Type      NotificationType   `json:"type"`
 	Recipient string             `json:"recipient"`
 	Content   string             `json:"content"`
