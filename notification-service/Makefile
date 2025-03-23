@@ -16,9 +16,13 @@ docker-build:
 
 docker-up:
 	@echo "Iniciando contenedores Docker..."
-	docker-compose up -d
+	docker-compose up
+
+docker-down:
+	@echo "Apagando contenedores Docker..."
+	docker-compose down
 
 # Migrations
 migrations:
 	@echo "Ejecutando migraciones de base de datos..."
-	docker exec -i notification_postgres psql -U postgres -d notification_db < scripts/schema.sql
+	docker exec -i notification_postgres psql -U notifuser  -d notifications < scripts/schema.sql
