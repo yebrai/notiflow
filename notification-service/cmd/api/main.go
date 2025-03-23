@@ -5,7 +5,7 @@ import (
 	"context"
 	"log"
 	"net/http"
-	"notifyflow/notification-service/internal/config"
+	"notification-service/internal/config"
 	"os"
 	"os/signal"
 	"syscall"

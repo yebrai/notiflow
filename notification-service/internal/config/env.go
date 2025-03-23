@@ -94,7 +94,7 @@ func LoadConfig() Config {
 			Port:         GetEnv("DB_PORT", "5432"),
 			Name:         GetEnv("DB_NAME", "notification_db"),
 			User:         GetEnv("DB_USER", "postgres"),
-			Password:     GetEnv("DB_PASSWORD", "password"),
+			Password:     GetEnv("DB_PASSWORD", "admin"),
 			SSLMode:      GetEnv("DB_SSL_MODE", "disable"),
 			MaxOpenConns: GetEnvAsInt("DB_MAX_OPEN_CONNS", 10),
 			MaxIdleConns: GetEnvAsInt("DB_MAX_IDLE_CONNS", 5),
@@ -114,8 +114,6 @@ func LoadConfig() Config {
 func (c *Config) Validate() []string {
 	var missingVars []string
 
-	// Validar variables críticas
-	// Ejemplo: si DB_HOST es necesario en todos los casos
 	if c.Database.Host == "" {
 		missingVars = append(missingVars, "DB_HOST")
 	}
